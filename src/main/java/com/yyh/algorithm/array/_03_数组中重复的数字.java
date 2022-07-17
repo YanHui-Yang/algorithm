@@ -2,6 +2,7 @@ package com.yyh.algorithm.array;
 
 import org.junit.Assert;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,8 +25,8 @@ import java.util.Set;
 public class _03_数组中重复的数字 {
 
     public static void main(String[] args) {
-        int[] array = new int[] {2, 3, 1, 0, 2, 5, 3};
-        int ret1 = findRepeatNumber3(array);
+        int[] array = new int[]{2, 3, 1, 0, 2, 5, 3};
+        int ret1 = findRepeatNumber4(array);
         System.out.println(ret1);
         Assert.assertTrue(ret1 == 2 || ret1 == 3);
     }
@@ -90,5 +91,20 @@ public class _03_数组中重复的数字 {
         }
 
         throw new IllegalArgumentException("无重复数字");
+    }
+
+    // 排序对比
+    public static int findRepeatNumber4(int[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("参数错误");
+        }
+
+        Arrays.sort(array);
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] == array[i + 1]) {
+                return array[i];
+            }
+        }
+        return -1;
     }
 }
