@@ -27,11 +27,39 @@ package com.yyh.algorithm.array;
  */
 public class _04二维数组中的查找 {
 
-    public static boolean findNumberIn2DArray(int[][] matrix, int target) {
+    public static boolean findNumberIn2DArray1(int[][] matrix, int target) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] == target) {
                     return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean findNumberIn2DArray2(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+
+        int jlimit = 0;
+
+        outer:
+        for (int i = 0; i < matrix.length; i++) {
+            int[] inner = matrix[i];
+            inner:
+            for (int j = 0; j < inner.length; j++) {
+                if (inner[j] == target) {
+                    return true;
+                }
+
+                if (inner[j] > target) {
+                    continue outer;
+                }
+
+                if (inner[j] < target) {
+                    jlimit++;
                 }
             }
         }
